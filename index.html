@@ -1,192 +1,509 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Yusuf Berat Ateş</title>
-<meta name="description" content="Yusuf Berat Ateş — physics undergraduate at METU (ODTÜ), quantum optics and sensing. TÜBİTAK scholar." />
-<style>
-  :root {
-    --bg:      #0d1b2a;
-    --text:    #e6ebf2;
-    --muted:   #9fb0c3;
-    --line:    #20344a;
-    --accent:  #7fb2e6;
-    --maxw:    720px;
-  }
-
-  * { box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 17px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-
-  /* header */
-  header { padding: 70px 0 36px; border-bottom: 1px solid var(--line); }
-  header h1 {
-    font-size: 2rem;
-    font-weight: normal;
-    letter-spacing: .3px;
-    margin: 0 0 8px;
-  }
-  header .role { color: var(--muted); font-size: 1.05rem; margin: 0; }
-
-  nav {
-    margin-top: 22px;
-    font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    font-size: .9rem;
-  }
-  nav a { color: var(--muted); margin-right: 20px; }
-  nav a:hover { color: var(--text); text-decoration: none; }
-
-  /* sections */
-  section { padding: 38px 0; border-bottom: 1px solid var(--line); }
-  section:last-of-type { border-bottom: none; }
-
-  h2 {
-    font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    font-size: .82rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 18px;
-  }
-
-  p { margin: 0 0 14px; }
-  p:last-child { margin-bottom: 0; }
-  .muted { color: var(--muted); }
-
-  ul { margin: 0; padding-left: 0; list-style: none; }
-
-  /* research list */
-  .research li { padding: 4px 0; }
-  .research li::before { content: "—"; color: var(--accent); margin-right: 10px; }
-
-  /* projects */
-  .project { padding: 14px 0; }
-  .project + .project { border-top: 1px solid var(--line); }
-  .project h3 {
-    font-size: 1.05rem;
-    font-weight: normal;
-    margin: 0 0 4px;
-  }
-  .project .meta {
-    font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    font-size: .8rem;
-    color: var(--muted);
-  }
-  .project p { margin: 6px 0 0; color: var(--muted); font-size: .98rem; }
-
-  .note { color: var(--muted); font-size: .9rem; font-style: italic; margin-top: 16px; }
-
-  footer {
-    padding: 36px 0 56px;
-    color: var(--muted);
-    font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    font-size: .82rem;
-  }
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
-  <div class="wrap">
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#070a11;color:#e6ebf3;font-family:'Spectral',serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:rgba(91,155,255,0.3)}
+  @keyframes jr-rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes jr-pulse{0%,100%{opacity:0.45;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+  @keyframes jr-cue{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(7px);opacity:1}}
+  @keyframes jr-beamdash{to{stroke-dashoffset:-220}}
+  @keyframes jr-spin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+<div ref="{{ reg }}" style="position:relative;width:100%">
 
-    <header>
-      <h1>Yusuf Berat Ateş</h1>
-      <p class="role">Physics undergraduate · Middle East Technical University (ODTÜ)</p>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#projects">Projects</a>
-        <a href="#cv">CV</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+  <!-- fixed hue glow that shifts with progress -->
+  <div id="jr-glow" style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 90% 60% at 22% 88%,rgba(227,168,87,0.10),transparent 60%);transition:background .6s linear"></div>
 
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        I am a fourth-year physics undergraduate at the Middle East Technical University
-        (METU / ODTÜ) in Ankara, focusing on quantum optics and quantum sensing. I am
-        interested in how the quantum behaviour of light and matter can be used to measure
-        the physical world with precision beyond classical limits.
-      </p>
-      <p class="muted">
-        I am a TÜBİTAK scholar and intend to pursue graduate study in experimental quantum
-        science.
-      </p>
-    </section>
+  <!-- NAV -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:linear-gradient(180deg,rgba(7,10,17,0.9),transparent)">
+    <a href="#jr-top" style="display:flex;align-items:center;gap:11px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.06em;color:#cbd4e2">YUSUF BERAT ATEŞ</a>
+    <div style="display:flex;align-items:center;gap:18px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#7e8aa0">
+      <a href="uploads/cv.pdf" target="_blank" style="padding:7px 15px;border:1px solid rgba(255,255,255,0.18);border-radius:100px;transition:all .2s" style-hover="border-color:rgba(255,255,255,0.5);color:#e6ebf3">CV ↓</a>
+      <a href="Entanglement.dc.html" style="opacity:.7;transition:opacity .2s" style-hover="opacity:1">classic ↗</a>
+    </div>
+  </nav>
 
-    <section id="research">
-      <h2>Research Interests</h2>
-      <ul class="research">
-        <li>Quantum optics — light–matter interaction and the statistics of light</li>
-        <li>Quantum sensing — measurement beyond the standard quantum limit</li>
-        <li>Photonics — interferometry, optical cavities, and quantum light sources</li>
-        <li>Quantum metrology and parameter estimation</li>
-      </ul>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-
-      <div class="project">
-        <h3>Squeezed-light interferometry bench</h3>
-        <p class="meta">2025</p>
-        <p>
-          Design and characterization of a tabletop interferometer for demonstrating
-          sub-shot-noise phase sensing with squeezed states of light.
-        </p>
-      </div>
-
-      <div class="project">
-        <h3>Photon-counting statistics toolkit</h3>
-        <p class="meta">2024</p>
-        <p>
-          Simulation and analysis of second-order coherence g²(τ) measurements to
-          distinguish classical from non-classical light.
-        </p>
-      </div>
-
-      <div class="project">
-        <h3>Quantum metrology estimation study</h3>
-        <p class="meta">2024</p>
-        <p>
-          Quantum Fisher information bounds for optical phase estimation, comparing
-          classical and entanglement-enhanced strategies.
-        </p>
-      </div>
-
-      <p class="note">Placeholder entries — to be replaced with real projects.</p>
-    </section>
-
-    <section id="cv">
-      <h2>CV</h2>
-      <p><a href="cv.pdf" download>Download my CV (PDF)</a></p>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <p><a href="mailto:atesyusufberat9@gmail.com">atesyusufberat9@gmail.com</a></p>
-    </section>
-
-    <footer>
-      © 2026 Yusuf Berat Ateş
-    </footer>
-
+  <!-- PROGRESS THREAD -->
+  <div style="position:fixed;left:36px;top:16vh;bottom:16vh;width:18px;z-index:55;pointer-events:none">
+    <div style="position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#e3a857,#36c9b0,#7f9bc4,#ff6b4d,#4d8bff,#8b7cff,#3fd0e0);opacity:0.22;border-radius:2px"></div>
+    <div id="jr-fill" style="position:absolute;left:7px;top:0;width:4px;height:0%;background:#e3a857;border-radius:3px;box-shadow:0 0 12px currentColor;transition:height .12s linear,background .4s linear,box-shadow .4s linear"></div>
+    <div id="jr-orb" style="position:absolute;left:9px;top:0%;width:0;height:0;transform:translate(-50%,-50%)">
+      <span style="display:block;width:11px;height:11px;border-radius:50%;background:#e3a857;box-shadow:0 0 16px 3px #e3a857;transform:translate(-50%,-50%);transition:background .4s linear,box-shadow .4s linear"></span>
+    </div>
+    <!-- nodes -->
+    <div id="jr-n0" style="position:absolute;left:9px;top:0%;width:7px;height:7px;border-radius:50%;background:#1b2436;border:1px solid #2f3c52;transform:translate(-50%,-50%);transition:all .3s"></div>
+    <div id="jr-n1" style="position:absolute;left:9px;top:16.6%;width:7px;height:7px;border-radius:50%;background:#1b2436;border:1px solid #2f3c52;transform:translate(-50%,-50%);transition:all .3s"></div>
+    <div id="jr-n2" style="position:absolute;left:9px;top:33.3%;width:7px;height:7px;border-radius:50%;background:#1b2436;border:1px solid #2f3c52;transform:translate(-50%,-50%);transition:all .3s"></div>
+    <div id="jr-n3" style="position:absolute;left:9px;top:50%;width:7px;height:7px;border-radius:50%;background:#1b2436;border:1px solid #2f3c52;transform:translate(-50%,-50%);transition:all .3s"></div>
+    <div id="jr-n4" style="position:absolute;left:9px;top:66.6%;width:7px;height:7px;border-radius:50%;background:#1b2436;border:1px solid #2f3c52;transform:translate(-50%,-50%);transition:all .3s"></div>
+    <div id="jr-n5" style="position:absolute;left:9px;top:83.3%;width:7px;height:7px;border-radius:50%;background:#1b2436;border:1px solid #2f3c52;transform:translate(-50%,-50%);transition:all .3s"></div>
+    <div id="jr-n6" style="position:absolute;left:9px;top:100%;width:7px;height:7px;border-radius:50%;background:#1b2436;border:1px solid #2f3c52;transform:translate(-50%,-50%);transition:all .3s"></div>
   </div>
+
+  <!-- COUNTER -->
+  <div style="position:fixed;right:40px;bottom:34px;z-index:55;text-align:right;font-family:'JetBrains Mono',monospace;pointer-events:none">
+    <div id="jr-cnum" style="font-size:12.5px;letter-spacing:0.1em;color:#8b95a8">00 / 07</div>
+    <div id="jr-clabel" style="font-size:13px;color:#e6ebf3;margin-top:3px;letter-spacing:0.04em">THE JOURNEY</div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="jr-top" data-chapter data-idx="0" data-label="THE JOURNEY" data-hue="38" style="position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 32px">
+    <canvas data-anim="dna" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0.9"></canvas>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,transparent 30%,#070a11 85%)"></div>
+    <div style="position:relative;z-index:2;animation:jr-rise 1s both">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.24em;color:#a9b6cc;margin-bottom:30px">A PHYSICIST'S TRAJECTORY</div>
+      <h1 style="font-weight:300;font-size:clamp(44px,8vw,104px);line-height:0.98;letter-spacing:-0.02em;color:#f4f7fc">From <span style="font-style:italic;color:#e3a857">curiosity</span><br>to <span style="font-style:italic;background:linear-gradient(120deg,#5b9bff,#8b7cff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">quantum radar</span></h1>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#9aa5b8;max-width:560px;margin:32px auto 0;line-height:1.7">Yusuf Berat Ateş — physics undergraduate at METU, optics &amp; photonics. Scroll to follow the path, one question leading to the next.</p>
+    </div>
+    <div style="position:absolute;bottom:46px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.2em;color:#6f7c93;display:flex;flex-direction:column;align-items:center;gap:10px">BEGIN<span style="animation:jr-cue 1.8s ease-in-out infinite;font-size:15px">↓</span></div>
+  </section>
+
+  <!-- ===== CH 1 — ORIGIN ===== -->
+  <section data-chapter data-idx="1" data-label="ORIGIN" data-hue="38" style="position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;max-width:1240px;margin:0 auto;padding:120px 80px 120px 110px">
+    <div data-reveal style="opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;color:#e3a857;margin-bottom:20px">01 — ORIGIN · the spark of life</div>
+      <h2 style="font-weight:300;font-size:clamp(34px,4.4vw,58px);line-height:1.05;letter-spacing:-0.02em;color:#f4f7fc;margin-bottom:26px">What separates the living from dead matter?</h2>
+      <p style="font-size:19px;line-height:1.65;color:#b3bdcd;font-weight:300;margin-bottom:18px">Nature documentaries first ignited my curiosity — watching animals hunt, grieve, and form societies made me ask what divides living things from inert matter.</p>
+      <p style="font-size:17px;line-height:1.65;color:#8e99ab;font-weight:300">In high school, biology led me to the <span style="color:#e3a857">cell</span>, then to <span style="color:#e3a857">DNA</span> — where chemistry revealed atoms and molecules quietly obeying precise rules.</p>
+    </div>
+    <div data-reveal style="position:relative;height:62vh;opacity:0;transform:translateY(34px);transition:opacity 1.1s .15s cubic-bezier(.2,.7,.2,1),transform 1.1s .15s cubic-bezier(.2,.7,.2,1)">
+      <canvas data-anim="helix" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+    </div>
+  </section>
+
+  <!-- ===== CH 2 — THE RULES ===== -->
+  <section data-chapter data-idx="2" data-label="THE RULES" data-hue="168" style="position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;max-width:1240px;margin:0 auto;padding:120px 80px 120px 110px">
+    <div data-reveal style="position:relative;height:62vh;order:1;opacity:0;transform:translateY(34px);transition:opacity 1.1s .15s cubic-bezier(.2,.7,.2,1),transform 1.1s .15s cubic-bezier(.2,.7,.2,1)">
+      <canvas data-anim="atoms" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+    </div>
+    <div data-reveal style="order:2;opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;color:#36c9b0;margin-bottom:20px">02 — THE RULES · into physics</div>
+      <h2 style="font-weight:300;font-size:clamp(34px,4.4vw,58px);line-height:1.05;letter-spacing:-0.02em;color:#f4f7fc;margin-bottom:26px">The rules pointed to the deepest place I could find.</h2>
+      <p style="font-size:19px;line-height:1.65;color:#b3bdcd;font-weight:300;margin-bottom:18px">Atoms and molecules, unconsciously obeying exact laws, guided me toward the broadest framework there is — <span style="color:#36c9b0">physics</span>.</p>
+      <p style="font-size:17px;line-height:1.65;color:#8e99ab;font-weight:300">In my final year of high school I worked through <span style="color:#cfe">MIT OpenCourseWare on Quantum Mechanics</span>, and knew I would stay in physics for good.</p>
+    </div>
+  </section>
+
+  <!-- ===== CH 3 — THE SEARCH (paper) ===== -->
+  <section data-chapter data-idx="3" data-label="THE SEARCH" data-hue="214" style="position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:130px 80px 130px 110px;overflow:hidden">
+    <div data-reveal style="display:grid;grid-template-columns:0.92fr 1.08fr;gap:54px;align-items:center;max-width:1180px;width:100%;opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;color:#7fa6e0;margin-bottom:20px">03 — THE SEARCH · reading alone</div>
+        <h2 style="font-weight:300;font-size:clamp(32px,4.2vw,54px);line-height:1.06;letter-spacing:-0.02em;color:#f4f7fc;margin-bottom:24px">No one could guide me — so I read everything.</h2>
+        <p style="font-size:18px;line-height:1.65;color:#b3bdcd;font-weight:300;margin-bottom:16px">Fascinated by light and entanglement, I began hunting the blind spots of classical radar, where stealth targets and noise defeat detection. The answer kept pointing to the <span style="color:#7fa6e0">quantum</span>.</p>
+        <p style="font-size:16px;line-height:1.65;color:#8e99ab;font-weight:300">My professors had no one to mentor this; they told me to read PhD-level work. So I did — five-plus papers and Marco Lanzagorta's <em>Quantum Radar</em> — through an earthquake, a surgery, and a broken leg. The drive never broke.</p>
+      </div>
+      <!-- paper sheet -->
+      <div style="position:relative;transform:rotate(-1.4deg)">
+        <div style="position:relative;background:#efe7d3;border-radius:3px;padding:38px 40px 44px;box-shadow:0 40px 80px rgba(0,0,0,0.55),0 2px 0 #d8cdb2;background-image:linear-gradient(#cdbf9c 1px,transparent 1px),linear-gradient(90deg,#cdbf9c 1px,transparent 1px);background-size:26px 26px;background-position:-1px -1px;color:#26344a">
+          <div style="position:absolute;left:46px;top:0;bottom:0;width:1.5px;background:#d98c8c;opacity:0.6"></div>
+          <div style="font-family:'Caveat',cursive;font-size:30px;color:#1f3358;line-height:1.05;margin-bottom:10px;font-weight:700">Quantum Illumination</div>
+          <div style="font-family:'Caveat',cursive;font-size:21px;color:#33508a;line-height:1.35;margin-bottom:18px">entangled signal + idler →<br>detect below the noise floor</div>
+          <svg viewBox="0 0 260 70" width="100%" height="58" style="margin-bottom:14px">
+            <path d="M6 52 Q60 8 120 40 T250 26" fill="none" stroke="#33508a" stroke-width="2" stroke-linecap="round"/>
+            <line x1="6" y1="60" x2="250" y2="60" stroke="#7a6b48" stroke-width="1.5"/>
+            <line x1="6" y1="60" x2="6" y2="10" stroke="#7a6b48" stroke-width="1.5"/>
+            <circle cx="120" cy="40" r="3.5" fill="#d98c8c"/>
+            <circle cx="250" cy="26" r="3.5" fill="#d98c8c"/>
+          </svg>
+          <div style="font-family:'Caveat',cursive;font-size:19px;color:#33508a;line-height:1.4">∴ noise ↓↓  ·  SNR advantage<br><span style="color:#b06a4a">→ read: Lanzagorta, "Quantum Radar"</span></div>
+          <div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#5a4e34;border:1px solid #b9aa82;padding:3px 9px;border-radius:2px;background:rgba(255,255,255,0.3)">5+ papers</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#5a4e34;border:1px solid #b9aa82;padding:3px 9px;border-radius:2px;background:rgba(255,255,255,0.3)">self-directed</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#5a4e34;border:1px solid #b9aa82;padding:3px 9px;border-radius:2px;background:rgba(255,255,255,0.3)">2 yrs</span>
+          </div>
+        </div>
+        <!-- book spine -->
+        <div style="position:absolute;right:-26px;bottom:-30px;width:118px;height:160px;background:linear-gradient(135deg,#16233b,#0d1626);border:1px solid #2b3c5a;border-radius:2px;box-shadow:0 22px 40px rgba(0,0,0,0.6);transform:rotate(6deg);display:flex;flex-direction:column;justify-content:space-between;padding:14px 12px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#7fa6e0;letter-spacing:0.05em">M. LANZAGORTA</div>
+          <div style="font-family:'Spectral',serif;font-style:italic;font-size:17px;color:#dfe7f4;line-height:1.05">Quantum Radar</div>
+          <div style="height:2px;background:#5b9bff;width:60%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CH 4 — THE LAB ===== -->
+  <section data-chapter data-idx="4" data-label="THE LAB" data-hue="14" style="position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;max-width:1240px;margin:0 auto;padding:120px 80px 120px 110px">
+    <div data-reveal style="opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;color:#ff6b4d;margin-bottom:20px">04 — THE LAB · theory meets the bench</div>
+      <h2 style="font-weight:300;font-size:clamp(34px,4.4vw,58px);line-height:1.05;letter-spacing:-0.02em;color:#f4f7fc;margin-bottom:26px">Seeing the equations in real light.</h2>
+      <p style="font-size:19px;line-height:1.65;color:#b3bdcd;font-weight:300;margin-bottom:24px">METU gave me both theory and hands. In the optics and modern-physics labs I aligned interferometers, resolved spectra, and measured the photon–matter interaction myself.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:9px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#dbe3ef;padding:8px 14px;border:1px solid rgba(255,107,77,0.4);border-radius:100px">Quantum Mechanics</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#dbe3ef;padding:8px 14px;border:1px solid rgba(255,107,77,0.4);border-radius:100px">Elementary Solid State</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#dbe3ef;padding:8px 14px;border:1px solid rgba(255,107,77,0.4);border-radius:100px">Laser Applications</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#dbe3ef;padding:8px 14px;border:1px solid rgba(255,107,77,0.4);border-radius:100px">Optics &amp; Waves Lab</span>
+      </div>
+    </div>
+    <div data-reveal style="position:relative;height:60vh;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(34px);transition:opacity 1.1s .15s cubic-bezier(.2,.7,.2,1),transform 1.1s .15s cubic-bezier(.2,.7,.2,1)">
+      <svg viewBox="0 0 420 300" width="100%" height="100%" style="max-height:60vh">
+        <rect x="20" y="20" width="380" height="260" rx="4" fill="none" stroke="rgba(255,255,255,0.08)"/>
+        <!-- laser source -->
+        <rect x="36" y="138" width="34" height="24" rx="2" fill="#1a2233" stroke="#ff6b4d"/>
+        <text x="53" y="178" font-family="JetBrains Mono" font-size="9" fill="#8e99ab" text-anchor="middle">laser</text>
+        <!-- beam path -->
+        <path d="M70 150 H190 L300 70 M190 150 H330 L330 230" fill="none" stroke="#ff6b4d" stroke-width="2" stroke-dasharray="6 8" style="animation:jr-beamdash 3s linear infinite;filter:drop-shadow(0 0 4px rgba(255,107,77,0.7))"/>
+        <!-- beamsplitter -->
+        <rect x="180" y="140" width="20" height="20" fill="rgba(91,155,255,0.18)" stroke="#5b9bff" transform="rotate(45 190 150)"/>
+        <text x="190" y="124" font-family="JetBrains Mono" font-size="8.5" fill="#8e99ab" text-anchor="middle">BS</text>
+        <!-- mirrors -->
+        <rect x="296" y="58" width="22" height="6" rx="2" fill="#5b9bff" transform="rotate(-45 307 61)"/>
+        <rect x="320" y="222" width="22" height="6" rx="2" fill="#5b9bff"/>
+        <!-- lens -->
+        <ellipse cx="260" cy="150" rx="6" ry="20" fill="rgba(91,155,255,0.12)" stroke="#5b9bff"/>
+        <!-- detector -->
+        <circle cx="330" cy="230" r="9" fill="#0d1524" stroke="#3fd0e0"/>
+        <text x="350" y="234" font-family="JetBrains Mono" font-size="9" fill="#8e99ab">detector</text>
+        <text x="30" y="46" font-family="JetBrains Mono" font-size="9.5" fill="#647495">MICHELSON // optical bench</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== CH 5 — EXPERIMENT ===== -->
+  <section data-chapter data-idx="5" data-label="EXPERIMENT" data-hue="214" style="position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;max-width:1240px;margin:0 auto;padding:120px 80px 120px 110px">
+    <div data-reveal style="position:relative;height:58vh;order:1;border:1px solid rgba(255,255,255,0.08);border-radius:6px;background:rgba(255,255,255,0.012);overflow:hidden;opacity:0;transform:translateY(34px);transition:opacity 1.1s .15s cubic-bezier(.2,.7,.2,1),transform 1.1s .15s cubic-bezier(.2,.7,.2,1)">
+      <canvas data-anim="scope" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+      <div style="position:absolute;top:14px;left:16px;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#647495">sim_output.py — SNR vs. integration</div>
+    </div>
+    <div data-reveal style="order:2;opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;color:#4d8bff;margin-bottom:20px">05 — EXPERIMENT · applied steps</div>
+      <h2 style="font-weight:300;font-size:clamp(34px,4.4vw,58px);line-height:1.05;letter-spacing:-0.02em;color:#f4f7fc;margin-bottom:26px">Turning the reading into code &amp; measurement.</h2>
+      <p style="font-size:19px;line-height:1.65;color:#b3bdcd;font-weight:300;margin-bottom:18px">Now the work goes hands-on: simulations of illumination schemes in <span style="color:#9cc0ff">Python</span> and <span style="color:#9cc0ff">MATLAB</span>, optical-design models in Zemax, and the modern-physics experiments I'm running this term.</p>
+      <p style="font-size:16px;line-height:1.65;color:#8e99ab;font-weight:300">Electron diffraction, Franck–Hertz, photoelectric work functions, Compton scattering — quantum behavior, measured by hand.</p>
+    </div>
+  </section>
+
+  <!-- ===== CH 6 — QUANTUM DEVICES ===== -->
+  <section data-chapter data-idx="6" data-label="QUANTUM DEVICES" data-hue="255" style="position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;max-width:1240px;margin:0 auto;padding:120px 80px 120px 110px">
+    <div data-reveal style="opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;color:#8b7cff;margin-bottom:20px">06 — QUANTUM DEVICES · the goal</div>
+      <h2 style="font-weight:300;font-size:clamp(34px,4.4vw,58px);line-height:1.05;letter-spacing:-0.02em;color:#f4f7fc;margin-bottom:26px">Building the source of entangled light.</h2>
+      <p style="font-size:19px;line-height:1.65;color:#b3bdcd;font-weight:300;margin-bottom:18px">The destination: <span style="color:#b3a6ff">quantum devices</span> for radar and sensing — entangled signal–idler photon pairs from a nonlinear crystal, the heart of quantum illumination.</p>
+      <p style="font-size:16px;line-height:1.65;color:#8e99ab;font-weight:300">This is where theory becomes hardware — the photonics that could let radar see what classical systems cannot.</p>
+    </div>
+    <div data-reveal style="position:relative;height:60vh;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(34px);transition:opacity 1.1s .15s cubic-bezier(.2,.7,.2,1),transform 1.1s .15s cubic-bezier(.2,.7,.2,1)">
+      <canvas data-anim="source" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+    </div>
+  </section>
+
+  <!-- ===== CH 7 — THE FIELD ===== -->
+  <section data-chapter data-idx="7" data-label="THE FIELD" data-hue="190" style="position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px;overflow:hidden">
+    <canvas data-anim="radar" style="position:absolute;inset:0;width:100%;height:100%;z-index:0"></canvas>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 60%,transparent 35%,#070a11 88%)"></div>
+    <div data-reveal style="position:relative;z-index:2;max-width:760px;opacity:0;transform:translateY(34px);transition:opacity 1.1s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.18em;color:#3fd0e0;margin-bottom:22px">07 — THE FIELD · into the world</div>
+      <h2 style="font-weight:300;font-size:clamp(38px,5.2vw,68px);line-height:1.02;letter-spacing:-0.025em;color:#f4f7fc;margin-bottom:24px">From the bench to systems that protect the world.</h2>
+      <p style="font-size:19px;line-height:1.65;color:#b3bdcd;font-weight:300">The endpoint isn't a paper — it's deployed quantum radar and sensing. I want to contribute to academia, then carry those findings into R&amp;D, where they detect what cannot be seen and help keep people safe.</p>
+    </div>
+  </section>
+
+  <!-- ===== OUTRO / CONTACT ===== -->
+  <section style="position:relative;z-index:1;padding:130px 32px 90px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)">
+    <div data-reveal style="opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.18em;color:#9db4dd;margin-bottom:22px">THE PATH CONTINUES —</p>
+      <h2 style="font-weight:300;font-style:italic;font-size:clamp(40px,6vw,72px);letter-spacing:-0.02em;color:#f4f7fc;margin-bottom:30px">Let's build it together.</h2>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px">
+        <a href="/cdn-cgi/l/email-protection#64051001171d1117110206011605105d240309050d084a070b09" style="padding:15px 26px;border-radius:100px;background:linear-gradient(120deg,#5b9bff,#8b7cff);color:#06080d;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;transition:box-shadow .2s" style-hover="box-shadow:0 0 34px rgba(91,155,255,0.5)"><span class="__cf_email__" data-cfemail="2e4f5a4b5d575b5d5b484c4b5c4f5a176e49434f4742004d4143">[email&#160;protected]</span></a>
+        <a href="uploads/cv.pdf" target="_blank" style="padding:15px 26px;border-radius:100px;border:1px solid rgba(255,255,255,0.16);color:#c3ccdb;font-family:'JetBrains Mono',monospace;font-size:13px;transition:border-color .2s" style-hover="border-color:rgba(255,255,255,0.4)">Download CV ↓</a>
+      </div>
+      <div style="display:flex;gap:26px;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:#8b95a8">
+        <a href="https://github.com/yusufberatates" target="_blank" style="transition:color .2s" style-hover="color:#9cc0ff">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" style="transition:color .2s" style-hover="color:#9cc0ff">LinkedIn</a>
+        <span style="color:#465369">Ankara, Türkiye</span>
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);padding:26px 44px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#56627a;flex-wrap:wrap;gap:10px">
+    <span>© 2026 Yusuf Berat Ateş</span><span>curiosity → quantum radar</span>
+  </footer>
+
+</div>
+</x-dc>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { reg: (el) => { this._root = el; } };
+  }
+
+  componentDidMount() {
+    this._raf = []; this._anims = [];
+    // gather canvases
+    const root = this._root || document;
+    this._setupCanvases(root);
+    this._setupReveals(root);
+    this._setupScroll(root);
+    // failsafe reveal
+    setTimeout(() => { root.querySelectorAll('[data-reveal]').forEach(e => this._show(e)); }, 2500);
+  }
+
+  componentWillUnmount() {
+    (this._raf || []).forEach(id => cancelAnimationFrame(id));
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onResize) window.removeEventListener('resize', this._onResize);
+  }
+
+  _fit(cv) {
+    const ctx = cv.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = cv.clientWidth || 1, h = cv.clientHeight || 1;
+    cv.width = w * dpr; cv.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
+  }
+
+  _setupCanvases(root) {
+    const cvs = root.querySelectorAll('canvas[data-anim]');
+    cvs.forEach(cv => {
+      const ctx = this._fit(cv);
+      cv._active = true;
+      const io = new IntersectionObserver(es => es.forEach(e => { cv._active = e.isIntersecting; }), { rootMargin: '80px' });
+      io.observe(cv);
+      const kind = cv.getAttribute('data-anim');
+      const drawer = this['_draw_' + kind];
+      if (!drawer) return;
+      const state = {};
+      const loop = () => {
+        if (cv._active && cv.clientWidth) {
+          drawer.call(this, ctx, cv.clientWidth, cv.clientHeight, state);
+        }
+        this._raf.push(requestAnimationFrame(loop));
+      };
+      this._anims.push(() => { this._fit(cv); });
+      loop();
+    });
+    this._onResize = () => this._anims.forEach(f => f());
+    window.addEventListener('resize', this._onResize);
+  }
+
+  // ---- DNA double helix (hero + ch1) ----
+  _draw_dna(ctx, W, H, s) {
+    s.t = (s.t || 0) + 0.012;
+    ctx.clearRect(0, 0, W, H);
+    const cx = W * 0.5, amp = Math.min(W * 0.14, 120), turns = 3.2;
+    const N = 70;
+    for (let i = 0; i <= N; i++) {
+      const p = i / N;
+      const y = p * H;
+      const ph = p * turns * Math.PI * 2 + s.t;
+      const x1 = cx + Math.sin(ph) * amp;
+      const x2 = cx + Math.sin(ph + Math.PI) * amp;
+      const depth = (Math.cos(ph) + 1) / 2;
+      if (i % 4 === 0) {
+        ctx.strokeStyle = `rgba(120,170,255,${0.10 + depth * 0.14})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y); ctx.stroke();
+      }
+      ctx.fillStyle = `rgba(227,168,87,${0.35 + depth * 0.5})`;
+      ctx.beginPath(); ctx.arc(x1, y, 2 + depth * 1.8, 0, 7); ctx.fill();
+      ctx.fillStyle = `rgba(120,170,255,${0.3 + (1 - depth) * 0.5})`;
+      ctx.beginPath(); ctx.arc(x2, y, 2 + (1 - depth) * 1.8, 0, 7); ctx.fill();
+    }
+  }
+
+  _draw_helix(ctx, W, H, s) { this._draw_dna(ctx, W, H, s); }
+
+  // ---- atoms / orbits ----
+  _draw_atoms(ctx, W, H, s) {
+    s.t = (s.t || 0) + 0.02;
+    ctx.clearRect(0, 0, W, H);
+    const cx = W / 2, cy = H / 2, R = Math.min(W, H) * 0.34;
+    // nucleus
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, 26);
+    g.addColorStop(0, 'rgba(54,201,176,0.9)'); g.addColorStop(1, 'rgba(54,201,176,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, 26, 0, 7); ctx.fill();
+    ctx.fillStyle = 'rgba(180,255,240,0.95)'; ctx.beginPath(); ctx.arc(cx, cy, 5, 0, 7); ctx.fill();
+    const orbits = [{ rx: R, ry: R * 0.4, rot: 0 }, { rx: R, ry: R * 0.4, rot: Math.PI / 3 }, { rx: R, ry: R * 0.4, rot: -Math.PI / 3 }];
+    orbits.forEach((o, k) => {
+      ctx.save(); ctx.translate(cx, cy); ctx.rotate(o.rot);
+      ctx.strokeStyle = 'rgba(54,201,176,0.22)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.ellipse(0, 0, o.rx, o.ry, 0, 0, 7); ctx.stroke();
+      const a = s.t * (1 + k * 0.35) + k * 2;
+      const ex = Math.cos(a) * o.rx, ey = Math.sin(a) * o.ry;
+      ctx.fillStyle = 'rgba(130,230,210,0.95)';
+      ctx.shadowColor = 'rgba(54,201,176,0.8)'; ctx.shadowBlur = 10;
+      ctx.beginPath(); ctx.arc(ex, ey, 4, 0, 7); ctx.fill();
+      ctx.shadowBlur = 0; ctx.restore();
+    });
+  }
+
+  // ---- oscilloscope / sim plot ----
+  _draw_scope(ctx, W, H, s) {
+    s.t = (s.t || 0) + 1;
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = 'rgba(255,255,255,0.05)'; ctx.lineWidth = 1;
+    for (let x = 0; x <= W; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+    for (let y = 0; y <= H; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+    // rising SNR curve
+    ctx.strokeStyle = '#4d8bff'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += 3) {
+      const p = x / W;
+      const y = H * 0.85 - (1 - Math.exp(-p * 3.2)) * H * 0.62;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    // noisy classical baseline
+    ctx.strokeStyle = 'rgba(150,165,184,0.5)'; ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += 3) {
+      const y = H * 0.52 + Math.sin(x * 0.05 + s.t * 0.05) * 6 + (Math.random() - 0.5) * 5;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    // moving readout dot
+    const px = (s.t * 1.6) % W;
+    const py = H * 0.85 - (1 - Math.exp(-(px / W) * 3.2)) * H * 0.62;
+    ctx.fillStyle = '#9cc0ff'; ctx.shadowColor = '#4d8bff'; ctx.shadowBlur = 12;
+    ctx.beginPath(); ctx.arc(px, py, 3.5, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
+  }
+
+  // ---- entangled photon source (SPDC) ----
+  _draw_source(ctx, W, H, s) {
+    s.t = (s.t || 0) + 1;
+    s.ph = s.ph || [];
+    ctx.clearRect(0, 0, W, H);
+    const cx = W * 0.5, cy = H * 0.5;
+    const crX = cx - 6, crW = 34, crH = 80;
+    // pump beam
+    ctx.strokeStyle = 'rgba(139,124,255,0.5)'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(W * 0.12, cy); ctx.lineTo(crX, cy); ctx.stroke();
+    // crystal
+    ctx.fillStyle = 'rgba(139,124,255,0.12)'; ctx.strokeStyle = '#8b7cff'; ctx.lineWidth = 1.5;
+    ctx.fillRect(crX, cy - crH / 2, crW, crH); ctx.strokeRect(crX, cy - crH / 2, crW, crH);
+    ctx.font = '9px JetBrains Mono'; ctx.fillStyle = '#9aa5b8'; ctx.textAlign = 'center';
+    ctx.fillText('χ⁽²⁾ crystal', crX + crW / 2, cy - crH / 2 - 10);
+    // two output cones
+    const ang = 0.42, len = W * 0.32, ox = crX + crW;
+    [-1, 1].forEach(d => {
+      ctx.strokeStyle = d < 0 ? 'rgba(91,155,255,0.4)' : 'rgba(63,208,224,0.4)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(ox, cy); ctx.lineTo(ox + Math.cos(ang) * len, cy + d * Math.sin(ang) * len); ctx.stroke();
+    });
+    ctx.fillStyle = '#7fb0ff'; ctx.font = '9px JetBrains Mono'; ctx.textAlign = 'left';
+    ctx.fillText('signal', ox + len * 0.7, cy - Math.sin(ang) * len * 0.7 - 6);
+    ctx.fillStyle = '#3fd0e0';
+    ctx.fillText('idler', ox + len * 0.7, cy + Math.sin(ang) * len * 0.7 + 14);
+    // emit entangled pairs
+    if (s.t % 26 < 1) s.ph.push({ p: 0 });
+    s.ph = s.ph.filter(o => o.p < 1);
+    s.ph.forEach(o => {
+      o.p += 0.012;
+      [-1, 1].forEach(d => {
+        const x = ox + Math.cos(ang) * len * o.p;
+        const y = cy + d * Math.sin(ang) * len * o.p;
+        ctx.fillStyle = d < 0 ? '#9cc0ff' : '#7fe6f0';
+        ctx.shadowColor = d < 0 ? '#5b9bff' : '#3fd0e0'; ctx.shadowBlur = 10;
+        ctx.beginPath(); ctx.arc(x, y, 3, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
+      });
+    });
+  }
+
+  // ---- radar sweep into the world ----
+  _draw_radar(ctx, W, H, s) {
+    s.ang = (s.ang || 0) + 0.016;
+    s.rings = s.rings || [];
+    ctx.clearRect(0, 0, W, H);
+    const cx = W * 0.5, cy = H * 0.62, R = Math.min(W, H) * 0.42;
+    // horizon
+    ctx.strokeStyle = 'rgba(63,208,224,0.18)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.stroke();
+    // rings
+    ctx.strokeStyle = 'rgba(63,208,224,0.14)';
+    for (let i = 1; i <= 4; i++) { ctx.beginPath(); ctx.arc(cx, cy, R * i / 4, Math.PI, 2 * Math.PI); ctx.stroke(); }
+    // sweep
+    ctx.save(); ctx.translate(cx, cy);
+    for (let i = 0; i < 36; i++) {
+      const a = -Math.PI / 2 + Math.sin(s.ang) * (Math.PI / 2 - 0.05) - i * 0.012 * Math.cos(s.ang);
+      const al = 0.22 * (1 - i / 36);
+      ctx.strokeStyle = `rgba(120,220,235,${al})`; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(Math.cos(a) * R, Math.sin(a) * R); ctx.stroke();
+    }
+    ctx.restore();
+    // target + expanding ping
+    const tx = cx + Math.cos(-1.1) * R * 0.7, ty = cy + Math.sin(-1.1) * R * 0.7;
+    if ((s.frame = (s.frame || 0) + 1) % 90 === 0) s.rings.push({ r: 0 });
+    s.rings = s.rings.filter(o => o.r < 60);
+    s.rings.forEach(o => { o.r += 0.7; ctx.strokeStyle = `rgba(63,208,224,${0.5 * (1 - o.r / 60)})`; ctx.beginPath(); ctx.arc(tx, ty, o.r, 0, 7); ctx.stroke(); });
+    ctx.fillStyle = '#7fe6f0'; ctx.shadowColor = '#3fd0e0'; ctx.shadowBlur = 14;
+    ctx.beginPath(); ctx.arc(tx, ty, 3.5, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
+  }
+
+  // ---- reveals ----
+  _show(el) { el.style.opacity = '1'; el.style.transform = 'none'; }
+  _setupReveals(root) {
+    const els = root.querySelectorAll('[data-reveal]');
+    if (!('IntersectionObserver' in window)) { els.forEach(e => this._show(e)); return; }
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { this._show(e.target); io.unobserve(e.target); } }), { threshold: 0.18 });
+    els.forEach(e => io.observe(e));
+  }
+
+  // ---- scroll: progress thread + hue + counter ----
+  _lerp(a, b, t) { return a + (b - a) * t; }
+  _hsl(h) { return `hsl(${h},78%,62%)`; }
+
+  _setupScroll(root) {
+    const fill = root.querySelector('#jr-fill');
+    const orbWrap = root.querySelector('#jr-orb');
+    const orb = orbWrap && orbWrap.firstElementChild;
+    const glow = root.querySelector('#jr-glow');
+    const cnum = root.querySelector('#jr-cnum');
+    const clabel = root.querySelector('#jr-clabel');
+    const chapters = Array.from(root.querySelectorAll('[data-chapter]'));
+    const nodes = chapters.map((c, i) => root.querySelector('#jr-n' + i));
+    const hueStops = [38, 38, 168, 214, 14, 214, 255, 190];
+
+    const onScroll = () => {
+      const st = window.scrollY || document.documentElement.scrollTop;
+      const max = (document.documentElement.scrollHeight - window.innerHeight) || 1;
+      const p = Math.max(0, Math.min(1, st / max));
+      // active chapter = nearest to viewport center
+      const mid = st + window.innerHeight / 2;
+      let active = 0, best = Infinity;
+      chapters.forEach((c, i) => {
+        const top = c.offsetTop, cmid = top + c.offsetHeight / 2;
+        const d = Math.abs(cmid - mid);
+        if (d < best) { best = d; active = i; }
+      });
+      // hue interpolation along whole scroll across stops
+      const seg = p * (hueStops.length - 1);
+      const si = Math.floor(seg), sf = seg - si;
+      const hue = this._lerp(hueStops[si], hueStops[Math.min(si + 1, hueStops.length - 1)], sf);
+      const col = this._hsl(hue);
+      if (fill) { fill.style.height = (p * 100) + '%'; fill.style.background = col; fill.style.color = col; }
+      if (orbWrap) orbWrap.style.top = (p * 100) + '%';
+      if (orb) { orb.style.background = col; orb.style.boxShadow = '0 0 16px 3px ' + col; }
+      if (glow) glow.style.background = `radial-gradient(ellipse 90% 60% at 22% 88%, ${this._hslA(hue, 0.12)}, transparent 60%)`;
+      nodes.forEach((n, i) => {
+        if (!n) return;
+        if (i <= active) { const c = this._hsl(hueStops[i]); n.style.background = c; n.style.borderColor = c; n.style.boxShadow = '0 0 10px ' + c; n.style.width = '9px'; n.style.height = '9px'; }
+        else { n.style.background = '#1b2436'; n.style.borderColor = '#2f3c52'; n.style.boxShadow = 'none'; n.style.width = '7px'; n.style.height = '7px'; }
+      });
+      if (cnum) cnum.textContent = String(active).padStart(2, '0') + ' / 07';
+      if (clabel) clabel.textContent = chapters[active].getAttribute('data-label') || '';
+    };
+    this._onScroll = () => { if (!this._tick) { this._tick = true; requestAnimationFrame(() => { this._tick = false; onScroll(); }); } };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    onScroll();
+  }
+
+  _hslA(h, a) { return `hsla(${h},78%,62%,${a})`; }
+}
+</script>
 </body>
 </html>
