@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yusuf Berat Ateş — Physics, Quantum Optics &amp; Sensing</title>
+<meta name="description" content="Yusuf Berat Ateş — Physics undergraduate at METU (ODTÜ), focused on quantum optics and sensing. TÜBİTAK scholar." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #060d1f;
+    --bg-2:      #0a1530;
+    --panel:     #0e1c3d;
+    --panel-2:   #122449;
+    --border:    #1d3268;
+    --text:      #dce6ff;
+    --muted:     #8ba1cf;
+    --accent:    #4da6ff;
+    --accent-2:  #38e1d6;
+    --glow:      rgba(77,166,255,0.35);
+    --radius:    16px;
+    --maxw:      940px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(56,225,214,0.10), transparent 60%),
+      radial-gradient(1000px 700px at 0% 0%, rgba(77,166,255,0.16), transparent 55%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    background-attachment: fixed;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* subtle starfield / grid overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(77,166,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(77,166,255,0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  a { color: var(--accent); text-decoration: none; transition: color .2s; }
+  a:hover { color: var(--accent-2); }
+
+  .wrap { position: relative; z-index: 1; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(12px);
+    background: rgba(6,13,31,0.72);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: .5px;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+  .brand span { color: var(--accent); }
+  .navlinks { display: flex; gap: 22px; flex-wrap: wrap; }
+  .navlinks a { color: var(--muted); font-size: .92rem; font-weight: 500; }
+  .navlinks a:hover { color: var(--text); }
+
+  /* ---------- HERO ---------- */
+  header.hero { padding: 90px 0 70px; text-align: center; }
+  .eyebrow {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .8rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    border: 1px solid var(--border);
+    background: rgba(56,225,214,0.06);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 26px;
+  }
+  header.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.3rem, 6vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    background: linear-gradient(120deg, #ffffff 10%, var(--accent) 55%, var(--accent-2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 18px;
+  }
+  header.hero .tagline {
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+    color: var(--muted);
+    max-width: 620px;
+    margin: 0 auto 30px;
+  }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: .95rem;
+    padding: 12px 22px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    transition: transform .15s, box-shadow .2s, border-color .2s;
+  }
+  .btn-primary {
+    background: linear-gradient(120deg, var(--accent), #2d7fe0);
+    color: #04101f;
+    border-color: transparent;
+    box-shadow: 0 6px 24px var(--glow);
+  }
+  .btn-primary:hover { transform: translateY(-2px); color: #04101f; box-shadow: 0 10px 30px var(--glow); }
+  .btn-ghost { color: var(--text); background: var(--panel); }
+  .btn-ghost:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--text); }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 56px 0; scroll-margin-top: 80px; }
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::before {
+    content: "";
+    width: 26px; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 2px;
+  }
+  .section-sub { color: var(--muted); margin-bottom: 30px; font-size: .95rem; }
+
+  .card {
+    background: linear-gradient(160deg, var(--panel), var(--bg-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px 28px;
+  }
+  .about p + p { margin-top: 14px; }
+  .about .muted { color: var(--muted); }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .pill {
+    font-size: .82rem;
+    color: var(--text);
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    padding: 6px 13px;
+    border-radius: 100px;
+  }
+
+  /* research grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .topic {
+    background: linear-gradient(160deg, var(--panel), var(--bg-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    transition: transform .18s, border-color .2s, box-shadow .25s;
+  }
+  .topic:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+  .topic .ico { font-size: 1.5rem; margin-bottom: 12px; display: block; }
+  .topic h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.08rem; font-weight: 600; margin-bottom: 6px; }
+  .topic p { color: var(--muted); font-size: .9rem; }
+
+  /* projects */
+  .project {
+    background: linear-gradient(160deg, var(--panel), var(--bg-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 26px;
+    transition: transform .18s, border-color .2s, box-shadow .25s;
+  }
+  .project + .project { margin-top: 16px; }
+  .project:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+  .project .head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .project h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; }
+  .project .year { color: var(--accent-2); font-size: .82rem; font-family: 'Space Grotesk', sans-serif; white-space: nowrap; }
+  .project p { color: var(--muted); font-size: .92rem; margin-top: 8px; }
+  .project .tags { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .project .tags span { font-size: .76rem; color: var(--accent); background: rgba(77,166,255,0.08); border: 1px solid var(--border); padding: 4px 10px; border-radius: 100px; }
+  .note { color: var(--muted); font-size: .85rem; margin-top: 16px; font-style: italic; }
+
+  /* cv + contact */
+  .center-card { text-align: center; }
+  .center-card p { color: var(--muted); margin-bottom: 20px; }
+  .contact-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+
+  footer { text-align: center; padding: 40px 0 60px; color: var(--muted); font-size: .85rem; }
+  footer .dot { color: var(--accent); }
+
+  @media (max-width: 560px) {
+    .navlinks { display: none; }
+    header.hero { padding: 64px 0 48px; }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <div class="brand">YB<span>·</span>Ateş</div>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#cv">CV</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Quantum Optics &amp; Sensing</span>
+      <h1>Yusuf Berat Ateş</h1>
+      <p class="tagline">
+        Physics undergraduate at METU (ODTÜ) exploring the quantum nature of light —
+        from photonic measurement to next-generation sensing. TÜBİTAK scholar.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#cv">↓ Download CV</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <h2 class="section-title">About</h2>
+      <p class="section-sub">Who I am and what drives my curiosity.</p>
+      <div class="card">
+        <p>
+          I am a <strong>4th-year physics undergraduate</strong> at the
+          Middle East Technical University (METU / ODTÜ) in Ankara, where my work centers on
+          <strong>quantum optics and quantum sensing</strong>. I am fascinated by how the
+          fundamental behaviour of light and matter can be harnessed to measure the physical
+          world with precision beyond classical limits.
+        </p>
+        <p class="muted">
+          As a <strong>TÜBİTAK scholar</strong>, I divide my time between coursework in advanced
+          physics and hands-on research in optical and quantum measurement. My long-term goal is
+          to pursue graduate study in experimental quantum science, building instruments and
+          experiments that turn quantum phenomena into practical sensing technologies.
+        </p>
+        <div class="pills">
+          <span class="pill">METU / ODTÜ — Physics</span>
+          <span class="pill">TÜBİTAK Scholar</span>
+          <span class="pill">Quantum Optics</span>
+          <span class="pill">Quantum Sensing</span>
+          <span class="pill">Ankara, Türkiye</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research">
+      <h2 class="section-title">Research Interests</h2>
+      <p class="section-sub">The questions I want to spend my time on.</p>
+      <div class="grid">
+        <div class="topic">
+          <span class="ico">🔬</span>
+          <h3>Quantum Optics</h3>
+          <p>Light–matter interaction, photon statistics, squeezed and entangled states of light.</p>
+        </div>
+        <div class="topic">
+          <span class="ico">📡</span>
+          <h3>Quantum Sensing</h3>
+          <p>Pushing measurement precision toward and beyond the standard quantum limit.</p>
+        </div>
+        <div class="topic">
+          <span class="ico">💡</span>
+          <h3>Photonics</h3>
+          <p>Optical cavities, interferometry, and the experimental tools that make quantum light usable.</p>
+        </div>
+        <div class="topic">
+          <span class="ico">🧮</span>
+          <h3>Metrology &amp; Estimation</h3>
+          <p>Quantum metrology, Fisher information, and optimal strategies for parameter estimation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Selected work — placeholders to be replaced with real projects.</p>
+
+      <div class="project">
+        <div class="head">
+          <h3>Squeezed-Light Interferometry Bench</h3>
+          <span class="year">2025</span>
+        </div>
+        <p>
+          Design and characterization of a tabletop interferometer aimed at demonstrating
+          sub-shot-noise phase sensing using squeezed states of light.
+        </p>
+        <div class="tags"><span>Quantum Optics</span><span>Interferometry</span><span>Lab</span></div>
+      </div>
+
+      <div class="project">
+        <div class="head">
+          <h3>Photon-Counting Statistics Toolkit</h3>
+          <span class="year">2024</span>
+        </div>
+        <p>
+          A simulation and analysis toolkit for second-order coherence g²(τ) measurements,
+          used to classify classical vs. non-classical light sources.
+        </p>
+        <div class="tags"><span>Python</span><span>Data Analysis</span><span>Quantum Sensing</span></div>
+      </div>
+
+      <div class="project">
+        <div class="head">
+          <h3>Quantum Metrology Estimation Study</h3>
+          <span class="year">2024</span>
+        </div>
+        <p>
+          Theoretical exploration of quantum Fisher information bounds for optical phase
+          estimation, comparing classical and entanglement-enhanced strategies.
+        </p>
+        <div class="tags"><span>Theory</span><span>Metrology</span><span>Estimation</span></div>
+      </div>
+
+      <p class="note">These are placeholder entries — swap in your real projects and links any time.</p>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+      <h2 class="section-title">Curriculum Vitae</h2>
+      <p class="section-sub">A full overview of my education, research and awards.</p>
+      <div class="card center-card">
+        <p>Download my CV as a PDF.</p>
+        <a class="btn btn-primary" href="cv.pdf" download>↓ Download CV (PDF)</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Open to research collaborations, questions and opportunities.</p>
+      <div class="card center-card">
+        <p>The best way to reach me is by email.</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="mailto:atesyusufberat9@gmail.com">✉ atesyusufberat9@gmail.com</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Yusuf Berat Ateş <span class="dot">·</span> Physics, METU (ODTÜ) <span class="dot">·</span>
+      Quantum Optics &amp; Sensing <span class="dot">·</span> &copy; 2026
+    </div>
+  </footer>
+</body>
+</html>
