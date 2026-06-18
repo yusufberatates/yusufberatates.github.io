@@ -19,7 +19,9 @@
   @keyframes jr-cue{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(7px);opacity:1}}
   @keyframes jr-beamdash{to{stroke-dashoffset:-220}}
   @keyframes jr-spin{to{transform:rotate(360deg)}}
-
+  #jr-thread, #jr-counter {
+  transition: opacity 0.4s ease;
+ }
   /* skip link */
   .jr-skip{position:absolute;left:-9999px;top:0;z-index:200;background:#5b9bff;color:#06080d;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;border-radius:0 0 6px 0}
   .jr-skip:focus{left:0}
@@ -513,6 +515,16 @@
           if (i <= active) { const c = this._hsl(hueStops[i]); n.style.background = c; n.style.borderColor = c; n.style.boxShadow = '0 0 10px ' + c; n.style.width = '9px'; n.style.height = '9px'; }
           else { n.style.background = '#1b2436'; n.style.borderColor = '#2f3c52'; n.style.boxShadow = 'none'; n.style.width = '7px'; n.style.height = '7px'; }
         });
+        const outro = root.querySelector('#jr-outro');
+        const thread = root.querySelector('#jr-thread');
+        const counter = root.querySelector('#jr-counter');
+
+        const outroTop = outro ? outro.getBoundingClientRect().top : Infinity;
+        const inOutro = outroTop < vh * 0.5;
+
+        if (thread) thread.style.opacity = inOutro ? '0' : '1';
+        if (counter) counter.style.opacity = inOutro ? '0' : '1';
+
         if (cnum) cnum.textContent = String(active).padStart(2, '0') + ' / 07';
         if (clabel) clabel.textContent = chapters[active].getAttribute('data-label') || '';
         for (let k = revealEls.length - 1; k >= 0; k--) {
