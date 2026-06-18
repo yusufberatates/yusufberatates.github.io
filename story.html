@@ -18,10 +18,8 @@
   @keyframes jr-pulse{0%,100%{opacity:0.45;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
   @keyframes jr-cue{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(7px);opacity:1}}
   @keyframes jr-beamdash{to{stroke-dashoffset:-220}}
-  @keyframes jr-spin{to{transform:rotate(360deg)}}
-  #jr-thread, #jr-counter {
-  transition: opacity 0.4s ease;
- }
+  @keyframes jr-arrow{0%{opacity:0.3;transform:translateX(-3px);}50%{opacity:1;transform:translateX(3px);}100%{opacity:0.3;transform:translateX(-3px);}} 
+  @keyframes jr-spin{to{transform:rotate(360deg)}}#jr-thread,#jr-counter{transition: opacity 0.4s ease;}
   /* skip link */
   .jr-skip{position:absolute;left:-9999px;top:0;z-index:200;background:#5b9bff;color:#06080d;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;border-radius:0 0 6px 0}
   .jr-skip:focus{left:0}
@@ -249,7 +247,7 @@
   <!-- ===== OUTRO / CONTACT ===== -->
   <section id="jr-outro" style="position:relative;z-index:1;padding:130px 32px 90px;text-align:center;border-top:1px solid rgba(255,255,255,0.06)">
     <div data-reveal style="opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)">
-      <p style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.18em;color:#9db4dd;margin-bottom:22px">THE PATH CONTINUES — <span style="display:inline-block;animation:jr-spin 2s linear infinite">&#10227;</span></p>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:0.18em;color:#9db4dd;margin-bottom:22px">THE PATH CONTINUES <span style="display:inline-block;animation:jr-arrow 1.4s ease-in-out infinite">&#10230;</span></p>
       <h2 style="font-weight:300;font-style:italic;font-size:clamp(40px,6vw,72px);letter-spacing:-0.02em;color:#f4f7fc;margin-bottom:14px">Let's build it together.</h2>
       <p style="font-size:19px;line-height:1.65;color:#b3bdcd;font-weight:300;margin-bottom:40px">Also available for Age of Empires II, CS 1.6, coffee, and any question — seriously, any.</p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px">
